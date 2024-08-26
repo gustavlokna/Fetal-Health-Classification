@@ -2,7 +2,7 @@ import argparse
 from typing import Any
 from utils.config import read_config
 from Visualization.visualize import correlation_matrix_make_png
-from Preprocessor.preprosess import data_preprocessing
+from Preprocessor.preprocessor import data_preprocessing
 from model.linearRegression import train_model
 
 def main(args: argparse.Namespace) -> None:

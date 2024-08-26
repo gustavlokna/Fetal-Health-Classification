@@ -9,7 +9,7 @@ data:
 
 
 model:
-  output_dir: models  # Base directory for saving models
+  output_dir: trained_models  # Base directory for saving models
   detector_type: linreg  # Type of model to use: lof, suod, svm, or ae
 
 

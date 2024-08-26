@@ -1,6 +1,5 @@
 import yaml
 
-
 def read_config(config_path: str = "config.yaml") -> dict:
     """Read the YAML configuration file.
 

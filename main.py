@@ -3,7 +3,7 @@ from typing import Any
 from utils.config import read_config
 from Visualization.visualize import correlation_matrix_make_png
 from Preprocessor.preprocessor import data_preprocessing
-from model.linearRegression import train_model, predict_model
+from model.linearRegression import train_model, predict_model, eval_plot
 
 def main(args: argparse.Namespace) -> None:
     """
@@ -48,6 +48,7 @@ def main(args: argparse.Namespace) -> None:
         print("corr")
         fileName = "correlationMatrix"
         correlation_matrix_make_png(fileName, config)
+        eval_plot(config)
         #eval_model(eval_run_args)
     else:
         print("No valid arguments provided. Use --help for usage information.")

@@ -1,7 +1,7 @@
 import argparse
 from typing import Any
 from utils.config import read_config
-
+from Visualization.visualize import correlation_matrix_make_png
 def main(args: argparse.Namespace) -> None:
     """
     Main function for the sensor anomaly detection pipeline.
@@ -35,7 +35,9 @@ def main(args: argparse.Namespace) -> None:
         print("hei")
         #train_and_save_model(train_run_args)
     elif args.eval:
-        print("hei")
+        print("corr")
+        fileName = "correlationMatrix"
+        correlation_matrix_make_png(fileName, config)
         #eval_model(eval_run_args)
     else:
         print("No valid arguments provided. Use --help for usage information.")

@@ -1,9 +1,17 @@
 data:
   raw: Data/raw/raw.csv  # Full path to the raw file
   processed: Data/processed
+  trained: Data/processed/train.csv
+  eval: Data/processed/eval.csv
   feture_engineered: Data/feture_engineered
   raw_file: raw_file.csv
   processed_file: processed_data.csv
+
+
+model:
+  output_dir: trained_models  # Base directory for saving models
+  detector_type: linreg  # Type of model to use: lof, suod, svm, or ae
+
 
 Output:
   correlation_matrix: Output/correlation_matrix

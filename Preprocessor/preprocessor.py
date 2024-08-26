@@ -36,7 +36,7 @@ def data_preprocessing(data_config: dict) -> None:
     os.makedirs(processed_folder, exist_ok=True)
     
     # Save the training and evaluation data to separate files
-    train_data.to_csv(f"{processed_folder}/X.train", index=False)
-    eval_data.to_csv(f"{processed_folder}/X.eval", index=False)
+    train_data.to_csv(f"{processed_folder}/train.csv", index=False)
+    eval_data.to_csv(f"{processed_folder}/eval.csv", index=False)
 
     print("Data processing complete. Files saved to:", processed_folder)

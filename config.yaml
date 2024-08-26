@@ -1,0 +1,8 @@
+data:
+  raw: Data/raw
+  processed: Data/processed
+  feture_engineered: Data/feture_engineered
+  raw_file: raw_file.csv
+  processed_file: processed_data.csv
+
+

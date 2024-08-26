@@ -3,7 +3,7 @@ from typing import Any
 from utils.config import read_config
 from Visualization.visualize import correlation_matrix_make_png
 from Preprocessor.preprocessor import data_preprocessing
-from model.linearRegression import train_model
+from model.linearRegression import train_model, predict_model
 
 def main(args: argparse.Namespace) -> None:
     """
@@ -38,8 +38,12 @@ def main(args: argparse.Namespace) -> None:
         print("hallo")
     elif args.train:
         print("hei")
-
         train_model(config)
+
+    elif args.predict:
+        print("predict")
+        predict_model(config)
+
     elif args.eval:
         print("corr")
         fileName = "correlationMatrix"
@@ -47,32 +51,6 @@ def main(args: argparse.Namespace) -> None:
         #eval_model(eval_run_args)
     else:
         print("No valid arguments provided. Use --help for usage information.")
-
-
-
-def _run_preprocessing(
-    building: str, data_config: dict[str, Any], include_elhub: bool
-) -> None:
-    """
-    Run the preprocessing step of the pipeline.
-
-    Parameters
-    ----------
-    building : str
-        The name of the building to preprocess data for.
-    data_config : dict
-        Configuration dictionary for data processing.
-    include_elhub : bool
-        Flag to include Elhub data in preprocessing.
-
-    Returns
-    -------
-    None
-    """
-    print(f"Preprocessing data for building: {building}")
-    preprocess_sensor_hvac_and_elhub_data(building, data_config, include_elhub)
-
-
 
 def parse_arguments() -> argparse.Namespace:
     """
@@ -108,6 +86,12 @@ def parse_arguments() -> argparse.Namespace:
         action="store_true",
         help="Enable the training step (not implemented yet)",
     )
+    parser.add_argument(
+        "--predict",
+        action="store_true",
+        help="Enable the training step (not implemented yet)",
+    )
+
     parser.add_argument(
         "--eval",
         action="store_true",

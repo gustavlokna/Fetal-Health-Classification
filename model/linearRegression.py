@@ -3,6 +3,7 @@ from sklearn.linear_model import LinearRegression
 import joblib
 import os
 from utils.loader import load_data
+from sklearn.metrics import mean_squared_error, r2_score
 
 def train_model(data_config: dict) -> None:
     # Load the data
@@ -31,3 +32,31 @@ def train_model(data_config: dict) -> None:
     joblib.dump(model, model_path)
 
     print(f"Model trained and saved to {model_path}")
+
+def predict_model(data_config: dict) -> None:
+    # Load model
+    base_output_dir = data_config["model"]["output_dir"]
+    detector_type = data_config["model"]["detector_type"]
+    output_dir = os.path.join(base_output_dir, detector_type)
+
+    # Construct the path to the trained model
+    model_path = os.path.join(output_dir, 'trained_model.pkl')
+    model = joblib.load(model_path)
+
+    # Load test data
+    data = load_data(data_config["data"]["eval"])
+
+    # Split the test data into features and target
+    X_eval = data.iloc[:, :-1]  # All columns except the last one
+    y_eval = data.iloc[:, -1]   # Only the last column
+
+    # Predict using the loaded model
+    y_pred = model.predict(X_eval)
+
+    # Evaluate the model
+    mse = mean_squared_error(y_eval, y_pred)
+    r2 = r2_score(y_eval, y_pred)
+
+    # Print evaluation results
+    print(f"Mean Squared Error on Test Data: {mse}")
+    print(f"R-squared on Test Data: {r2}")

@@ -4,3 +4,6 @@ data:
   feture_engineered: Data/feture_engineered
   raw_file: raw_file.csv
   processed_file: processed_data.csv
+
+Output:
+  correlation_matrix: Output/correlation_matrix

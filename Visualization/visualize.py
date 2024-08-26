@@ -8,7 +8,7 @@ def correlation_matrix_make_png(fileName: str, data_config: dict) -> None:
     correlation_matrix = data.corr()
     plt.figure(figsize=(10, 10))
     sns.heatmap(correlation_matrix, annot=True, fmt=".2f", cmap='coolwarm', linewidths=0.5)
-    saveFolder = data_config["Output"]["correlation_matrix"]
+    saveFolder = f"{data_config['Output']['correlation_matrix']}.png"
     print(saveFolder)
     plt.savefig(saveFolder, format='png', dpi=300, bbox_inches='tight')
 

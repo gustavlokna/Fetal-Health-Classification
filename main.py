@@ -1,6 +1,6 @@
 import argparse
 from typing import Any
-
+from utils.config import read_config
 
 def main(args: argparse.Namespace) -> None:
     """
@@ -24,6 +24,7 @@ def main(args: argparse.Namespace) -> None:
     The function reads the configuration, validates the building name,
     and executes the appropriate pipeline step based on the provided arguments.
     """
+    config: dict[str, Any] = read_config()
     if args.preprocess:
         #_run_preprocessing(args.building, config["data"], args.include_elhub)
         print("hei")

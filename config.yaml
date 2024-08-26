@@ -1,8 +1,6 @@
 data:
-  raw: Data/raw
+  raw: Data/raw/raw.csv  # Full path to the raw file
   processed: Data/processed
   feture_engineered: Data/feture_engineered
   raw_file: raw_file.csv
   processed_file: processed_data.csv
-
-

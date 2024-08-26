@@ -3,6 +3,7 @@ from typing import Any
 from utils.config import read_config
 from Visualization.visualize import correlation_matrix_make_png
 from Preprocessor.preprosess import data_preprocessing
+from model.linearRegression import train_model
 
 def main(args: argparse.Namespace) -> None:
     """
@@ -37,7 +38,8 @@ def main(args: argparse.Namespace) -> None:
         print("hallo")
     elif args.train:
         print("hei")
-        #train_and_save_model(train_run_args)
+
+        train_model(config)
     elif args.eval:
         print("corr")
         fileName = "correlationMatrix"

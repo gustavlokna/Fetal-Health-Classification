@@ -1,27 +1,33 @@
-import numpy as np
 import pandas as pd
-import os
-from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error, r2_score
-import matplotlib.pyplot as plt
+import joblib
+import os
+from utils.loader import load_data
 
-# Load your dataset
-print("hei")
+def train_model(data_config: dict) -> None:
+    # Load the data
+    data = load_data(data_config["data"]["trained"])
+    
+    # Splitting the data into features and target
+    X = data.iloc[:, :-1]  # Features
+    y = data.iloc[:, -1]   # Target
 
-data = pd.read_csv('C:/Users/mathi/OneDrive/Dokumenter/Github/Prosjekt/Fetal-Health-Classification/Data/fetal_health.csv')
+    # Determine the output directory based on the detector_type
+    base_output_dir = data_config["model"]["output_dir"]
+    detector_type = data_config["model"]["detector_type"]
+    output_dir = os.path.join(base_output_dir, detector_type)
 
-# Inspect the dataset
-print(data.columns())
-"""
-# Split the data into features and target
-X = data.drop(columns=['fetal_health'])  # Features (independent variables)
-y = data['fetal_health']  # Target variable (what you want to predict)
+    # Ensure the output directory exists
+    os.makedirs(output_dir, exist_ok=True)
 
-# Split the data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    # Define the path to save the trained model
+    model_path = os.path.join(output_dir, 'trained_model.pkl')
 
-model = LinearRegression()
-model.fit(X_train,y_train)
+    # Train the model
+    model = LinearRegression()
+    model.fit(X, y)
 
-"""
+    # Save the trained model to the specified path
+    joblib.dump(model, model_path)
+
+    print(f"Model trained and saved to {model_path}")

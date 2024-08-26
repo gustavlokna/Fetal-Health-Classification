@@ -2,6 +2,8 @@ import argparse
 from typing import Any
 from utils.config import read_config
 from Visualization.visualize import correlation_matrix_make_png
+from Preprocessor.preprosess import data_preprocessing
+
 def main(args: argparse.Namespace) -> None:
     """
     Main function for the sensor anomaly detection pipeline.
@@ -27,9 +29,11 @@ def main(args: argparse.Namespace) -> None:
     config: dict[str, Any] = read_config()
     if args.preprocess:
         #_run_preprocessing(args.building, config["data"], args.include_elhub)
+        data_preprocessing(config)
         print("hei")
     elif args.add_features:
         #_run_feature_building(args.building, config["data"])
+        
         print("hallo")
     elif args.train:
         print("hei")

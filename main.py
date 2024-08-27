@@ -7,16 +7,17 @@ from model.linearRegression import train_model, predict_model, eval_plot
 
 def main(args: argparse.Namespace) -> None:
     """
-    Main function for the sensor anomaly detection pipeline.
+    Main function for the fetal health classification pipeline.
 
-    This function orchestrates the preprocessing, feature building, and training
-    steps of the sensor anomaly detection pipeline based on the provided command
-    line arguments.
+    This function coordinates the execution of various stages in the classification
+    pipeline, including data preprocessing, feature enhancement, model training, prediction,
+    and evaluation. Each step is activated based on the provided command line arguments.
 
     Parameters
     ----------
     args : argparse.Namespace
-        Command line arguments parsed by argparse.
+        Command line arguments parsed by argparse that determine which parts of the pipeline
+        are activated (preprocessing, adding features, training, predicting, evaluating).
 
     Returns
     -------
@@ -24,8 +25,14 @@ def main(args: argparse.Namespace) -> None:
 
     Notes
     -----
-    The function reads the configuration, validates the building name,
-    and executes the appropriate pipeline step based on the provided arguments.
+    The function begins by reading the configuration settings. Based on the command line
+    arguments, it executes one or more of the following steps:
+    - Data preprocessing to prepare data for feature building or model training.
+    - Feature building to enhance the model's input data.
+    - Training the model on preprocessed and feature-enhanced data.
+    - Making predictions using the trained model.
+    - Evaluating the model's performance and generating visualizations such as correlation matrices.
+    If no valid command line arguments are provided, the function will exit with a guidance message.
     """
     config: dict[str, Any] = read_config()
     if args.preprocess:
